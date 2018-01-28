@@ -91,12 +91,12 @@ class GeneticAlgorithm
         var cities: [City] = Array(firstParent.cities[0..<slice])
         
         var idx = slice
-        while cities.count < firstParent.cities.count {
+        while cities.count < secondParent.cities.count {
             let city = secondParent.cities[idx]
             if cities.contains(city) == false {
                 cities.append(city)
             }
-            idx = (idx + 1) % firstParent.cities.count
+            idx = (idx + 1) % secondParent.cities.count
         }
         
         return Route(cities: cities)

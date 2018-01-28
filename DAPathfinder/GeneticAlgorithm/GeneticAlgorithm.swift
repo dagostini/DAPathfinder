@@ -103,10 +103,9 @@ class GeneticAlgorithm
     }
     
     private func mutate(child: Route) -> Route {
-        if self.mutationProbability <= Double(Double(arc4random()) / Double(UINT32_MAX)) {
+        if self.mutationProbability >= Double(Double(arc4random()) / Double(UINT32_MAX)) {
             let firstIdx = Int(arc4random_uniform(UInt32(child.cities.count)))
             let secondIdx = Int(arc4random_uniform(UInt32(child.cities.count)))
-            
             var cities = child.cities
             cities.swapAt(firstIdx, secondIdx)
             

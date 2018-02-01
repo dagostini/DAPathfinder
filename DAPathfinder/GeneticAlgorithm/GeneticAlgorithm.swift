@@ -72,13 +72,13 @@ class GeneticAlgorithm
     }
     
     private func getParent(fromGeneration generation: [Route], withTotalDistance totalDistance: CGFloat) -> Route? {
-        let fitness = CGFloat(Double(arc4random()) / Double(UINT32_MAX)) * (generation.count - 1)
+        let fitness = CGFloat(Double(arc4random()) / Double(UINT32_MAX))
         
         var currentFitness: CGFloat = 0.0
         var result: Route?
         generation.forEach { (route) in
             if currentFitness <= fitness {
-                currentFitness += route.fitness(withTotalDistance: totalDistance)
+                currentFitness += route.fitness(withTotalDistance: totalDistance) //TODO: This is using the 'elitist' method, convert it to a 'roulette'
                 result = route
             }
         }

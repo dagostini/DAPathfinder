@@ -72,7 +72,7 @@ class GeneticAlgorithm
     }
     
     private func getParent(fromGeneration generation: [Route], withTotalDistance totalDistance: CGFloat) -> Route? {
-        let fitness = CGFloat(arc4random() / UINT32_MAX)
+        let fitness = CGFloat(Double(arc4random()) / Double(UINT32_MAX)) * (generation.count - 1)
         
         var currentFitness: CGFloat = 0.0
         var result: Route?

@@ -12,7 +12,7 @@ class Route
 {
     let cities: [City]
     
-    var _distance: CGFloat?
+    private var _distance: CGFloat?
     var distance: CGFloat {
         if _distance == nil {
             _distance = calculateDistance()
@@ -39,9 +39,18 @@ class Route
         
         return result + first.distance(to: last)
     }
-    
-    // Probability of being selected from 0 to 1
-    func fitness(withTotalDistance totalDistance: CGFloat) -> CGFloat {
-        return 1 - (distance/totalDistance)
+
+    /// Returns a normalized fitness value based on the best and worst distances in the generation.
+    /// The best route gets a fitness of 1.0, and the worst gets 0.0.
+    /// The `exponent` parameter is used to increase selection pressure.
+    func normalizedFitness(bestDistance: CGFloat, worstDistance: CGFloat, exponent: CGFloat = 3.0) -> CGFloat {
+        // If all routes are identical, give a neutral fitness.
+        if bestDistance == worstDistance {
+            return 1.0
+        }
+        // Normalize: best -> 1.0, worst -> 0.0.
+        let normalized = (worstDistance - distance) / (worstDistance - bestDistance)
+        // Apply exponent to increase selection pressure.
+        return pow(normalized, exponent)
     }
 }

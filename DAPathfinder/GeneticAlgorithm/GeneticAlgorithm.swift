@@ -14,6 +14,7 @@ class GeneticAlgorithm
     let mutationProbability = 0.015
     
     let cities: [City]
+    var currentShortestPath: CGFloat = .infinity
     var onNewGeneration: ((Route, Int) -> ())?
     
     private var population: [Route] = []
@@ -40,26 +41,43 @@ class GeneticAlgorithm
         DispatchQueue.global().async {
             while self.evolving {
                 
-                let currentTotalDistance = self.population.reduce(0.0, { $0 + $1.distance })
-                let sortByFitnessDESC: (Route, Route) -> Bool = { $0.fitness(withTotalDistance: currentTotalDistance) > $1.fitness(withTotalDistance: currentTotalDistance) }
+                // Calculate best (minimum) and worst (maximum) distances.
+                let bestDistance = self.population.map { $0.distance }.min() ?? 0
+                let worstDistance = self.population.map { $0.distance }.max() ?? CGFloat.greatestFiniteMagnitude
+                
+                // Compute the total fitness for the generation.
+                let totalFitness = self.population.reduce(0) { sum, route in
+                    sum + route.normalizedFitness(bestDistance: bestDistance, worstDistance: worstDistance)
+                }
+                
+                // Sort the population by fitness in descending order.
+                let sortByFitnessDESC: (Route, Route) -> Bool = { $0.normalizedFitness(bestDistance: bestDistance, worstDistance: worstDistance) > $1.normalizedFitness(bestDistance: bestDistance, worstDistance: worstDistance) }
                 let currentGeneration = self.population.sorted(by: sortByFitnessDESC)
                 
-                var nextGeneration: [Route] = []
+                // Preserve the elite individuals directly.
+                var nextGeneration = Array(currentGeneration.prefix(10))
                 
-                for _ in 0..<self.populationSize {
-                    guard
-                        let parentOne = self.getParent(fromGeneration: currentGeneration, withTotalDistance: currentTotalDistance),
-                        let parentTwo = self.getParent(fromGeneration: currentGeneration, withTotalDistance: currentTotalDistance)
-                        else { continue }
-                    
-                    let child = self.produceOffspring(firstParent: parentOne, secondParent: parentTwo)
-                    let finalChild = self.mutate(child: child)
-                    
-                    nextGeneration.append(finalChild)
+                // Fill the rest of the population using roulette wheel selection, crossover, and mutation.
+                while nextGeneration.count < self.population.count {
+                    // Select two parents using the roulette wheel selection function.
+                    if let parent1 = self.selectParent(from: self.population, bestDistance: bestDistance, worstDistance: worstDistance, totalFitness: totalFitness),
+                       let parent2 = self.selectParent(from: self.population, bestDistance: bestDistance, worstDistance: worstDistance, totalFitness: totalFitness) {
+                        
+                        // Combine the two parents to create a child.
+                        let child = self.produceOffspring(firstParent: parent1, secondParent: parent2)
+                        
+                        // Mutate the child based on the mutation rate.
+                        let mutatedChild = self.mutate(child: child)
+                        
+                        nextGeneration.append(mutatedChild)
+                    }
                 }
+                
                 self.population = nextGeneration
                 
+                // TODO: Don't forget to demo the shortest route in a generation!
                 if let bestRoute = self.population.sorted(by: sortByFitnessDESC).first {
+                    self.currentShortestPath = bestRoute.distance
                     self.onNewGeneration?(bestRoute, self.generation)
                 }
                 self.generation += 1
@@ -70,37 +88,65 @@ class GeneticAlgorithm
     public func stopEvolution() {
         evolving = false
     }
-    
-    private func getParent(fromGeneration generation: [Route], withTotalDistance totalDistance: CGFloat) -> Route? {
-        let fitness = CGFloat(Double(arc4random()) / Double(UINT32_MAX))
+
+    func selectParent(
+        from generation: [Route],
+        bestDistance: CGFloat,
+        worstDistance: CGFloat,
+        totalFitness: CGFloat
+    ) -> Route? {
+        guard !generation.isEmpty && totalFitness > 0 else { return nil }
         
-        var currentFitness: CGFloat = 0.0
-        var result: Route?
-        generation.forEach { (route) in
-            if currentFitness <= fitness {
-                currentFitness += route.fitness(withTotalDistance: totalDistance) //TODO: This is using the 'elitist' method, convert it to a 'roulette'
-                result = route
+        // Generate a random threshold between 0 and totalFitness.
+        let randomThreshold = CGFloat.random(in: 0..<totalFitness)
+        
+        // Accumulate fitness and select the route where the threshold is exceeded.
+        var cumulativeFitness: CGFloat = 0
+        for route in generation {
+            cumulativeFitness += route.normalizedFitness(bestDistance: bestDistance, worstDistance: worstDistance)
+            if cumulativeFitness >= randomThreshold {
+                return route
             }
         }
         
-        return result
+        // Fallback: return the last route.
+        return generation.last
     }
-    
+
     private func produceOffspring(firstParent: Route, secondParent: Route) -> Route {
-        let slice: Int = Int(arc4random_uniform(UInt32(firstParent.cities.count)))
-        var cities: [City] = Array(firstParent.cities[0..<slice])
+        let count = firstParent.cities.count
+        // Ensure there are at least 2 cities to avoid trivial crossover
+        guard count > 1 else { return firstParent }
         
-        var idx = slice
-        while cities.count < secondParent.cities.count {
-            let city = secondParent.cities[idx]
-            if cities.contains(city) == false {
-                cities.append(city)
-            }
-            idx = (idx + 1) % secondParent.cities.count
+        // Choose two random cut points ensuring start < end
+        let start = Int.random(in: 0..<count)
+        let end = Int.random(in: start..<count)
+        
+        // Initialize offspring with optional cities
+        var offspring = Array<City?>(repeating: nil, count: count)
+        
+        // Copy a segment from firstParent between start and end indices
+        for i in start..<end {
+            offspring[i] = firstParent.cities[i]
         }
         
-        return Route(cities: cities)
+        // Fill in remaining positions with cities from secondParent in order
+        var currentIndex = end
+        for city in secondParent.cities {
+            // Skip if the city is already included
+            if offspring.contains(where: { $0 == city }) { continue }
+            
+            // Find next empty slot, wrapping around if necessary
+            while offspring[currentIndex] != nil {
+                currentIndex = (currentIndex + 1) % count
+            }
+            offspring[currentIndex] = city
+        }
+        
+        // Unwrap the optional array into a non-optional array of cities
+        return Route(cities: offspring.compactMap { $0 })
     }
+
     
     private func mutate(child: Route) -> Route {
         if self.mutationProbability >= Double(Double(arc4random()) / Double(UINT32_MAX)) {

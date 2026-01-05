@@ -8,8 +8,7 @@
 
 import CoreGraphics
 
-struct City: Equatable
-{
+struct City: Equatable {
     static func ==(lhs: City, rhs: City) -> Bool {
         return lhs.location == rhs.location
     }

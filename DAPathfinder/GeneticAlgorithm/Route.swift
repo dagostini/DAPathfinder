@@ -8,8 +8,7 @@
 
 import CoreGraphics
 
-struct Route
-{
+struct Route {
     let cities: [City]
     let distance: CGFloat
 

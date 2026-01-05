@@ -3,7 +3,7 @@
 //  DAPathfinder
 //
 //  Created by Claude on 2026-01-05.
-//  Copyright © 2026 Domenico. All rights reserved.
+//  Copyright © 2026 agostini.tech. All rights reserved.
 //
 
 import SwiftUI
@@ -32,9 +32,11 @@ struct PathfinderView: View {
 
                 // Draw top 5 routes from current generation with decreasing opacity
                 // Best route (#1) is darkest, #5 is lightest
-                for (index, route) in algorithmRunner.top5Routes.enumerated() where !route.cities.isEmpty {
+                for (index, route) in algorithmRunner.top5Routes.enumerated() {
+                    guard let firstCity = route.cities.first else { continue }
+
                     var path = Path()
-                    path.move(to: route.cities.first!.location)
+                    path.move(to: firstCity.location)
                     for city in route.cities.dropFirst() {
                         path.addLine(to: city.location)
                     }
@@ -46,9 +48,10 @@ struct PathfinderView: View {
                 }
 
                 // Draw all-time best route as blue line (thicker, on top)
-                if let allTimeBest = algorithmRunner.allTimeBestRoute, !allTimeBest.cities.isEmpty {
+                if let allTimeBest = algorithmRunner.allTimeBestRoute,
+                   let firstCity = allTimeBest.cities.first {
                     var path = Path()
-                    path.move(to: allTimeBest.cities.first!.location)
+                    path.move(to: firstCity.location)
                     for city in allTimeBest.cities.dropFirst() {
                         path.addLine(to: city.location)
                     }

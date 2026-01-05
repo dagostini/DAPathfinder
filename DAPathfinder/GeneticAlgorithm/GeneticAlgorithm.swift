@@ -9,8 +9,7 @@
 import Foundation
 import CoreGraphics
 
-class GeneticAlgorithm
-{
+class GeneticAlgorithm {
     var populationSize: Int
     var mutationProbability: Double
     var eliteSize: Int

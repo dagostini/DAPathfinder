@@ -3,7 +3,7 @@
 //  DAPathfinder
 //
 //  Created by Claude on 2026-01-05.
-//  Copyright © 2026 Domenico. All rights reserved.
+//  Copyright © 2026 agostini.tech. All rights reserved.
 //
 
 import Foundation
@@ -50,14 +50,24 @@ class GeneticAlgorithmSettings: ObservableObject {
 
     private init() {
         // Load from UserDefaults or use defaults
-        let savedPopSize = UserDefaults.standard.integer(forKey: Keys.populationSize)
-        self.populationSize = savedPopSize > 0 ? savedPopSize : defaultPopulationSize
+        // Use object(forKey:) to distinguish between "not set" and "set to 0"
+        if UserDefaults.standard.object(forKey: Keys.populationSize) != nil {
+            self.populationSize = UserDefaults.standard.integer(forKey: Keys.populationSize)
+        } else {
+            self.populationSize = defaultPopulationSize
+        }
 
-        let savedMutProb = UserDefaults.standard.double(forKey: Keys.mutationProbability)
-        self.mutationProbability = savedMutProb > 0 ? savedMutProb : defaultMutationProbability
+        if UserDefaults.standard.object(forKey: Keys.mutationProbability) != nil {
+            self.mutationProbability = UserDefaults.standard.double(forKey: Keys.mutationProbability)
+        } else {
+            self.mutationProbability = defaultMutationProbability
+        }
 
-        let savedEliteSize = UserDefaults.standard.integer(forKey: Keys.eliteSize)
-        self.eliteSize = savedEliteSize > 0 ? savedEliteSize : defaultEliteSize
+        if UserDefaults.standard.object(forKey: Keys.eliteSize) != nil {
+            self.eliteSize = UserDefaults.standard.integer(forKey: Keys.eliteSize)
+        } else {
+            self.eliteSize = defaultEliteSize
+        }
     }
 
     // Validation result

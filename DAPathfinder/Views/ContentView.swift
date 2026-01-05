@@ -3,7 +3,7 @@
 //  DAPathfinder
 //
 //  Created by Claude on 2026-01-05.
-//  Copyright © 2026 Domenico. All rights reserved.
+//  Copyright © 2026 agostini.tech. All rights reserved.
 //
 
 import SwiftUI

@@ -9,39 +9,66 @@
 import Foundation
 import Combine
 
+/// Manages user-configurable settings for the genetic algorithm.
+///
+/// This singleton class provides persistent storage of algorithm parameters using UserDefaults.
+/// All settings are validated before being applied, and changes are automatically
+/// published to observers via Combine's `@Published` property wrapper.
 class GeneticAlgorithmSettings: ObservableObject {
+    /// Shared singleton instance.
     static let shared = GeneticAlgorithmSettings()
 
-    // UserDefaults keys
+    // MARK: - UserDefaults Keys
+
+    /// Keys for storing settings in UserDefaults.
     private enum Keys {
         static let populationSize = "populationSize"
         static let mutationProbability = "mutationProbability"
         static let eliteSize = "eliteSize"
     }
 
-    // Default values (match current hardcoded values)
+    // MARK: - Default Values
+
+    /// Default population size (number of routes per generation).
     private let defaultPopulationSize = 500
+
+    /// Default mutation probability (1.5% chance per route).
     private let defaultMutationProbability = 0.015
+
+    /// Default elite size (top 10 routes preserved each generation).
     private let defaultEliteSize = 10
 
-    // Validation ranges
+    // MARK: - Validation Ranges
+
+    /// Valid range for population size (10 to 2000 routes).
     private let populationSizeRange = 10...2000
+
+    /// Valid range for mutation probability (0.1% to 50%).
     private let mutationProbabilityRange = 0.001...0.5
+
+    /// Valid range for elite size (1 to 50 routes).
     private let eliteSizeRange = 1...50
 
-    // Published properties with UserDefaults persistence
+    // MARK: - Published Properties
+
+    /// Number of routes in each generation.
+    /// Automatically persisted to UserDefaults when changed.
     @Published var populationSize: Int {
         didSet {
             UserDefaults.standard.set(populationSize, forKey: Keys.populationSize)
         }
     }
 
+    /// Probability (0.0 to 1.0) that a route will undergo mutation.
+    /// Automatically persisted to UserDefaults when changed.
     @Published var mutationProbability: Double {
         didSet {
             UserDefaults.standard.set(mutationProbability, forKey: Keys.mutationProbability)
         }
     }
 
+    /// Number of best routes to preserve unchanged in each generation (elitism).
+    /// Automatically persisted to UserDefaults when changed.
     @Published var eliteSize: Int {
         didSet {
             UserDefaults.standard.set(eliteSize, forKey: Keys.eliteSize)
@@ -70,7 +97,9 @@ class GeneticAlgorithmSettings: ObservableObject {
         }
     }
 
-    // Validation result
+    // MARK: - Validation
+
+    /// Errors that can occur during settings validation.
     enum ValidationError: Error {
         case populationSizeTooSmall
         case populationSizeTooLarge
@@ -92,7 +121,16 @@ class GeneticAlgorithmSettings: ObservableObject {
         }
     }
 
-    // Validate proposed settings
+    /// Validates proposed settings without applying them.
+    ///
+    /// Checks that all values are within their valid ranges and that elite size
+    /// is less than population size.
+    ///
+    /// - Parameters:
+    ///   - populationSize: Proposed population size
+    ///   - mutationProbability: Proposed mutation probability
+    ///   - eliteSize: Proposed elite size
+    /// - Throws: `ValidationError` if any parameter is invalid
     func validate(populationSize: Int, mutationProbability: Double, eliteSize: Int) throws {
         // Validate population size
         if populationSize < populationSizeRange.lowerBound {
@@ -124,7 +162,17 @@ class GeneticAlgorithmSettings: ObservableObject {
         }
     }
 
-    // Update all settings at once (automatically publishes changes)
+    /// Updates all settings atomically after validation.
+    ///
+    /// All three settings are validated together before any are applied. If validation
+    /// fails, none of the settings are changed. Changes are automatically published
+    /// to observers and persisted to UserDefaults.
+    ///
+    /// - Parameters:
+    ///   - populationSize: New population size
+    ///   - mutationProbability: New mutation probability
+    ///   - eliteSize: New elite size
+    /// - Throws: `ValidationError` if any parameter is invalid
     func updateSettings(populationSize: Int, mutationProbability: Double, eliteSize: Int) throws {
         try validate(populationSize: populationSize, mutationProbability: mutationProbability, eliteSize: eliteSize)
 
@@ -133,7 +181,9 @@ class GeneticAlgorithmSettings: ObservableObject {
         self.eliteSize = eliteSize
     }
 
-    // Reset to default values
+    /// Resets all settings to their default values.
+    ///
+    /// Changes are automatically published to observers and persisted to UserDefaults.
     func resetToDefaults() {
         populationSize = defaultPopulationSize
         mutationProbability = defaultMutationProbability

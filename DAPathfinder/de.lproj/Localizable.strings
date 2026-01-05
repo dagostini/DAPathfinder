@@ -1,0 +1,43 @@
+/*
+  Localizable.strings
+  DAPathfinder
+  German (Deutsch)
+*/
+
+// MARK: - Tab Bar
+"Tab.Pathfinder" = "Routensuche";
+"Tab.Settings" = "Einstellungen";
+
+// MARK: - Pathfinder Screen
+"Pathfinder.Generation" = "Generation: %d";
+"Pathfinder.BestDistance" = "Beste Distanz: %.1f";
+"Pathfinder.Button.Start" = "Starten";
+"Pathfinder.Button.Clear" = "Löschen";
+"Pathfinder.Button.Stop" = "Stoppen";
+
+// MARK: - Settings Screen
+"Settings.Title" = "Algorithmus-Einstellungen";
+"Settings.PopulationSize.Label" = "Populationsgröße";
+"Settings.PopulationSize.Range" = "Bereich: 10 - 2000";
+"Settings.PopulationSize.Placeholder" = "Populationsgröße";
+"Settings.MutationProbability.Label" = "Mutationswahrscheinlichkeit";
+"Settings.MutationProbability.Range" = "Bereich: 0.001 - 0.5";
+"Settings.MutationProbability.Placeholder" = "Mutationswahrscheinlichkeit";
+"Settings.EliteSize.Label" = "Elite-Größe";
+"Settings.EliteSize.Range" = "Bereich: 1 - 50";
+"Settings.EliteSize.Placeholder" = "Elite-Größe";
+"Settings.Button.Update" = "Aktualisieren";
+"Settings.Button.Reset" = "Auf Standardwerte zurücksetzen";
+
+// MARK: - Alerts
+"Alert.Error.Title" = "Fehler";
+"Alert.Success.Title" = "Erfolg";
+"Alert.Button.OK" = "OK";
+"Alert.Settings.Success" = "Einstellungen erfolgreich aktualisiert";
+"Alert.Settings.InvalidValues" = "Bitte geben Sie gültige numerische Werte ein";
+"Alert.Settings.GenericError" = "Beim Aktualisieren der Einstellungen ist ein Fehler aufgetreten";
+
+// MARK: - Validation Errors
+"Validation.PopulationSize" = "Die Populationsgröße muss zwischen 10 und 2000 liegen";
+"Validation.MutationProbability" = "Die Mutationswahrscheinlichkeit muss zwischen 0.001 und 0.5 liegen";
+"Validation.EliteSize" = "Die Elite-Größe muss zwischen 1 und 50 liegen";

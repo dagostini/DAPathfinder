@@ -1,0 +1,43 @@
+/*
+  Localizable.strings
+  DAPathfinder
+  English
+*/
+
+// MARK: - Tab Bar
+"Tab.Pathfinder" = "Pathfinder";
+"Tab.Settings" = "Settings";
+
+// MARK: - Pathfinder Screen
+"Pathfinder.Generation" = "Generation: %d";
+"Pathfinder.BestDistance" = "Best Distance: %.1f";
+"Pathfinder.Button.Start" = "Start";
+"Pathfinder.Button.Clear" = "Clear";
+"Pathfinder.Button.Stop" = "Stop";
+
+// MARK: - Settings Screen
+"Settings.Title" = "Algorithm Settings";
+"Settings.PopulationSize.Label" = "Population Size";
+"Settings.PopulationSize.Range" = "Range: 10 - 2000";
+"Settings.PopulationSize.Placeholder" = "Population Size";
+"Settings.MutationProbability.Label" = "Mutation Probability";
+"Settings.MutationProbability.Range" = "Range: 0.001 - 0.5";
+"Settings.MutationProbability.Placeholder" = "Mutation Probability";
+"Settings.EliteSize.Label" = "Elite Size";
+"Settings.EliteSize.Range" = "Range: 1 - 50";
+"Settings.EliteSize.Placeholder" = "Elite Size";
+"Settings.Button.Update" = "Update";
+"Settings.Button.Reset" = "Reset to Defaults";
+
+// MARK: - Alerts
+"Alert.Error.Title" = "Error";
+"Alert.Success.Title" = "Success";
+"Alert.Button.OK" = "OK";
+"Alert.Settings.Success" = "Settings updated successfully";
+"Alert.Settings.InvalidValues" = "Please enter valid numeric values";
+"Alert.Settings.GenericError" = "An error occurred while updating settings";
+
+// MARK: - Validation Errors
+"Validation.PopulationSize" = "Population size must be between 10 and 2000";
+"Validation.MutationProbability" = "Mutation probability must be between 0.001 and 0.5";
+"Validation.EliteSize" = "Elite size must be between 1 and 50";

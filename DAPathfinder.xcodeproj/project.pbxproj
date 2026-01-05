@@ -17,6 +17,7 @@
 		77C242D4202601CC00B6FD9E /* PathfinderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C242D5202601CC00B6FD9E /* PathfinderView.swift */; };
 		77C242D6202601DD00B6FD9E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C242D7202601DD00B6FD9E /* SettingsView.swift */; };
 		77C242D8202601EE00B6FD9E /* AlgorithmRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C242D9202601EE00B6FD9E /* AlgorithmRunner.swift */; };
+		77C242DC2026030000B6FD9E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 77C242DE2026030000B6FD9E /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,10 @@
 		77C242D5202601CC00B6FD9E /* PathfinderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathfinderView.swift; sourceTree = "<group>"; };
 		77C242D7202601DD00B6FD9E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		77C242D9202601EE00B6FD9E /* AlgorithmRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlgorithmRunner.swift; sourceTree = "<group>"; };
+		77C242DD2026030000B6FD9E /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		77C242DF2026030100B6FD9E /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
+		77C242E02026030200B6FD9E /* it */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = it; path = it.lproj/Localizable.strings; sourceTree = "<group>"; };
+		77C242E12026030300B6FD9E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +75,7 @@
 				77C242C32019560D00B6FD9E /* GeneticAlgorithm */,
 				77C242CB2026010100B6FD9E /* GeneticAlgorithmSettings.swift */,
 				77C242B8201955E700B6FD9E /* Assets.xcassets */,
+				77C242DE2026030000B6FD9E /* Localizable.strings */,
 				77C242BD201955E700B6FD9E /* Info.plist */,
 			);
 			path = DAPathfinder;
@@ -147,6 +153,9 @@
 			knownRegions = (
 				en,
 				Base,
+				es,
+				it,
+				de,
 			);
 			mainGroup = 77C242A5201955E600B6FD9E;
 			productRefGroup = 77C242AF201955E700B6FD9E /* Products */;
@@ -164,6 +173,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				77C242B9201955E700B6FD9E /* Assets.xcassets in Resources */,
+				77C242DC2026030000B6FD9E /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -187,6 +197,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		77C242DE2026030000B6FD9E /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				77C242DD2026030000B6FD9E /* en */,
+				77C242DF2026030100B6FD9E /* es */,
+				77C242E02026030200B6FD9E /* it */,
+				77C242E12026030300B6FD9E /* de */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		77C242BE201955E700B6FD9E /* Debug */ = {

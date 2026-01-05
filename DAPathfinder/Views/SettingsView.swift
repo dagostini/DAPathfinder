@@ -19,49 +19,82 @@ struct SettingsView: View {
     @State private var errorMessage: String = ""
     @State private var showSuccess: Bool = false
 
+    // Real-time validation
+    private var isPopulationSizeValid: Bool {
+        guard let value = Int(populationSizeText) else { return false }
+        return (10...2000).contains(value)
+    }
+
+    private var isMutationProbabilityValid: Bool {
+        guard let value = Double(mutationProbabilityText) else { return false }
+        return (0.001...0.5).contains(value)
+    }
+
+    private var isEliteSizeValid: Bool {
+        guard let value = Int(eliteSizeText) else { return false }
+        guard let popSize = Int(populationSizeText) else { return false }
+        return (1...50).contains(value) && value < popSize
+    }
+
+    private var allFieldsValid: Bool {
+        isPopulationSizeValid && isMutationProbabilityValid && isEliteSizeValid
+    }
+
     var body: some View {
         VStack(spacing: 20) {
-            Text("Algorithm Settings")
+            Text(NSLocalizedString("Settings.Title", comment: ""))
                 .font(.title)
                 .fontWeight(.bold)
                 .padding(.top)
 
             // Population Size
             VStack(alignment: .leading, spacing: 8) {
-                Text("Population Size")
+                Text(NSLocalizedString("Settings.PopulationSize.Label", comment: ""))
                     .font(.headline)
-                TextField("Population Size", text: $populationSizeText)
+                TextField(NSLocalizedString("Settings.PopulationSize.Placeholder", comment: ""), text: $populationSizeText)
                     .keyboardType(.numberPad)
                     .textFieldStyle(.roundedBorder)
-                Text("Range: 10 - 2000")
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 5)
+                            .stroke(populationSizeText.isEmpty ? Color.clear : (isPopulationSizeValid ? Color.green : Color.red), lineWidth: 1)
+                    )
+                Text(NSLocalizedString("Settings.PopulationSize.Range", comment: ""))
                     .font(.caption)
-                    .foregroundColor(.gray)
+                    .foregroundColor(populationSizeText.isEmpty || isPopulationSizeValid ? .gray : .red)
             }
             .padding(.horizontal)
 
             // Mutation Probability
             VStack(alignment: .leading, spacing: 8) {
-                Text("Mutation Probability")
+                Text(NSLocalizedString("Settings.MutationProbability.Label", comment: ""))
                     .font(.headline)
-                TextField("Mutation Probability", text: $mutationProbabilityText)
+                TextField(NSLocalizedString("Settings.MutationProbability.Placeholder", comment: ""), text: $mutationProbabilityText)
                     .keyboardType(.decimalPad)
                     .textFieldStyle(.roundedBorder)
-                Text("Range: 0.001 - 0.5")
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 5)
+                            .stroke(mutationProbabilityText.isEmpty ? Color.clear : (isMutationProbabilityValid ? Color.green : Color.red), lineWidth: 1)
+                    )
+                Text(NSLocalizedString("Settings.MutationProbability.Range", comment: ""))
                     .font(.caption)
-                    .foregroundColor(.gray)
+                    .foregroundColor(mutationProbabilityText.isEmpty || isMutationProbabilityValid ? .gray : .red)
             }
             .padding(.horizontal)
 
             // Elite Size
             VStack(alignment: .leading, spacing: 8) {
-                Text("Elite Size")
+                Text(NSLocalizedString("Settings.EliteSize.Label", comment: ""))
                     .font(.headline)
-                TextField("Elite Size", text: $eliteSizeText)
+                TextField(NSLocalizedString("Settings.EliteSize.Placeholder", comment: ""), text: $eliteSizeText)
                     .keyboardType(.numberPad)
                     .textFieldStyle(.roundedBorder)
-                Text("Range: 1 - 50")
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 5)
+                            .stroke(eliteSizeText.isEmpty ? Color.clear : (isEliteSizeValid ? Color.green : Color.red), lineWidth: 1)
+                    )
+                Text(NSLocalizedString("Settings.EliteSize.Range", comment: ""))
                     .font(.caption)
-                    .foregroundColor(.gray)
+                    .foregroundColor(eliteSizeText.isEmpty || isEliteSizeValid ? .gray : .red)
             }
             .padding(.horizontal)
 
@@ -69,19 +102,20 @@ struct SettingsView: View {
 
             // Update Button
             Button(action: updateSettings) {
-                Text("Update")
+                Text(NSLocalizedString("Settings.Button.Update", comment: ""))
                     .fontWeight(.bold)
                     .frame(maxWidth: .infinity)
                     .padding()
-                    .background(Color.blue)
+                    .background(allFieldsValid ? Color.blue : Color.gray)
                     .foregroundColor(.white)
                     .cornerRadius(10)
             }
+            .disabled(!allFieldsValid)
             .padding(.horizontal)
 
             // Reset Button
             Button(action: resetSettings) {
-                Text("Reset to Defaults")
+                Text(NSLocalizedString("Settings.Button.Reset", comment: ""))
                     .frame(maxWidth: .infinity)
                     .padding()
                     .background(Color.clear)
@@ -97,15 +131,15 @@ struct SettingsView: View {
         .onAppear {
             loadSettings()
         }
-        .alert("Error", isPresented: $showError) {
-            Button("OK", role: .cancel) {}
+        .alert(NSLocalizedString("Alert.Error.Title", comment: ""), isPresented: $showError) {
+            Button(NSLocalizedString("Alert.Button.OK", comment: ""), role: .cancel) {}
         } message: {
             Text(errorMessage)
         }
-        .alert("Success", isPresented: $showSuccess) {
-            Button("OK", role: .cancel) {}
+        .alert(NSLocalizedString("Alert.Success.Title", comment: ""), isPresented: $showSuccess) {
+            Button(NSLocalizedString("Alert.Button.OK", comment: ""), role: .cancel) {}
         } message: {
-            Text("Settings updated successfully")
+            Text(NSLocalizedString("Alert.Settings.Success", comment: ""))
         }
     }
 
@@ -119,7 +153,7 @@ struct SettingsView: View {
         guard let populationSize = Int(populationSizeText),
               let mutationProbability = Double(mutationProbabilityText),
               let eliteSize = Int(eliteSizeText) else {
-            errorMessage = "Please enter valid numeric values"
+            errorMessage = NSLocalizedString("Alert.Settings.InvalidValues", comment: "")
             showError = true
             return
         }
@@ -135,7 +169,7 @@ struct SettingsView: View {
             errorMessage = error.localizedDescription
             showError = true
         } catch {
-            errorMessage = "An error occurred while updating settings"
+            errorMessage = NSLocalizedString("Alert.Settings.GenericError", comment: "")
             showError = true
         }
     }

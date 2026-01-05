@@ -72,20 +72,12 @@ class GeneticAlgorithmSettings: ObservableObject {
 
         var localizedDescription: String {
             switch self {
-            case .populationSizeTooSmall:
-                return "Population size must be at least 10"
-            case .populationSizeTooLarge:
-                return "Population size must be at most 2000"
-            case .mutationProbabilityTooSmall:
-                return "Mutation probability must be at least 0.001"
-            case .mutationProbabilityTooLarge:
-                return "Mutation probability must be at most 0.5"
-            case .eliteSizeTooSmall:
-                return "Elite size must be at least 1"
-            case .eliteSizeTooLarge:
-                return "Elite size must be at most 50"
-            case .eliteSizeGreaterThanPopulation:
-                return "Elite size must be less than population size"
+            case .populationSizeTooSmall, .populationSizeTooLarge:
+                return NSLocalizedString("Validation.PopulationSize", comment: "")
+            case .mutationProbabilityTooSmall, .mutationProbabilityTooLarge:
+                return NSLocalizedString("Validation.MutationProbability", comment: "")
+            case .eliteSizeTooSmall, .eliteSizeTooLarge, .eliteSizeGreaterThanPopulation:
+                return NSLocalizedString("Validation.EliteSize", comment: "")
             }
         }
     }

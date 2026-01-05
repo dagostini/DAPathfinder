@@ -30,15 +30,30 @@ struct PathfinderView: View {
                     context.fill(circle, with: .color(.red))
                 }
 
-                // Draw route as black line
-                if let route = algorithmRunner.currentRoute, !route.cities.isEmpty {
+                // Draw top 5 routes from current generation with decreasing opacity
+                // Best route (#1) is darkest, #5 is lightest
+                for (index, route) in algorithmRunner.top5Routes.enumerated() where !route.cities.isEmpty {
                     var path = Path()
                     path.move(to: route.cities.first!.location)
                     for city in route.cities.dropFirst() {
                         path.addLine(to: city.location)
                     }
                     path.closeSubpath()
-                    context.stroke(path, with: .color(.black), lineWidth: 1)
+
+                    // Calculate opacity: 1.0 for best, decreasing to 0.3 for 5th
+                    let opacity = 1.0 - (Double(index) * 0.15)
+                    context.stroke(path, with: .color(.black.opacity(opacity)), lineWidth: 1)
+                }
+
+                // Draw all-time best route as blue line (thicker, on top)
+                if let allTimeBest = algorithmRunner.allTimeBestRoute, !allTimeBest.cities.isEmpty {
+                    var path = Path()
+                    path.move(to: allTimeBest.cities.first!.location)
+                    for city in allTimeBest.cities.dropFirst() {
+                        path.addLine(to: city.location)
+                    }
+                    path.closeSubpath()
+                    context.stroke(path, with: .color(.blue), lineWidth: 2.5)
                 }
             }
             .background(Color(white: 0.667))
@@ -49,24 +64,32 @@ struct PathfinderView: View {
                     }
             )
 
-            // Generation label
-            Text("Generation: \(algorithmRunner.generation)")
-                .padding(.vertical, 8)
+            // Generation and distance labels
+            VStack(spacing: 4) {
+                Text(String(format: NSLocalizedString("Pathfinder.Generation", comment: ""), algorithmRunner.generation))
+                    .font(.body)
+                if algorithmRunner.bestDistance > 0 {
+                    Text(String(format: NSLocalizedString("Pathfinder.BestDistance", comment: ""), algorithmRunner.bestDistance))
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                }
+            }
+            .padding(.vertical, 8)
 
             // Control buttons
             HStack {
-                Button("Start") {
+                Button(NSLocalizedString("Pathfinder.Button.Start", comment: "")) {
                     startAlgorithm()
                 }
                 .disabled(locations.count < 2 || algorithmRunner.isRunning)
                 .frame(maxWidth: .infinity)
 
-                Button("Clear") {
+                Button(NSLocalizedString("Pathfinder.Button.Clear", comment: "")) {
                     clearAll()
                 }
                 .frame(maxWidth: .infinity)
 
-                Button("Stop") {
+                Button(NSLocalizedString("Pathfinder.Button.Stop", comment: "")) {
                     algorithmRunner.stop()
                 }
                 .disabled(!algorithmRunner.isRunning)

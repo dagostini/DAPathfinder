@@ -1,0 +1,43 @@
+/*
+  Localizable.strings
+  DAPathfinder
+  Italian (Italiano)
+*/
+
+// MARK: - Tab Bar
+"Tab.Pathfinder" = "Ricerca Percorsi";
+"Tab.Settings" = "Impostazioni";
+
+// MARK: - Pathfinder Screen
+"Pathfinder.Generation" = "Generazione: %d";
+"Pathfinder.BestDistance" = "Distanza Migliore: %.1f";
+"Pathfinder.Button.Start" = "Avvia";
+"Pathfinder.Button.Clear" = "Pulisci";
+"Pathfinder.Button.Stop" = "Ferma";
+
+// MARK: - Settings Screen
+"Settings.Title" = "Impostazioni dell'Algoritmo";
+"Settings.PopulationSize.Label" = "Dimensione Popolazione";
+"Settings.PopulationSize.Range" = "Intervallo: 10 - 2000";
+"Settings.PopulationSize.Placeholder" = "Dimensione Popolazione";
+"Settings.MutationProbability.Label" = "Probabilità di Mutazione";
+"Settings.MutationProbability.Range" = "Intervallo: 0.001 - 0.5";
+"Settings.MutationProbability.Placeholder" = "Probabilità di Mutazione";
+"Settings.EliteSize.Label" = "Dimensione Elite";
+"Settings.EliteSize.Range" = "Intervallo: 1 - 50";
+"Settings.EliteSize.Placeholder" = "Dimensione Elite";
+"Settings.Button.Update" = "Aggiorna";
+"Settings.Button.Reset" = "Ripristina Predefiniti";
+
+// MARK: - Alerts
+"Alert.Error.Title" = "Errore";
+"Alert.Success.Title" = "Successo";
+"Alert.Button.OK" = "OK";
+"Alert.Settings.Success" = "Impostazioni aggiornate con successo";
+"Alert.Settings.InvalidValues" = "Inserisci valori numerici validi";
+"Alert.Settings.GenericError" = "Si è verificato un errore durante l'aggiornamento delle impostazioni";
+
+// MARK: - Validation Errors
+"Validation.PopulationSize" = "La dimensione della popolazione deve essere compresa tra 10 e 2000";
+"Validation.MutationProbability" = "La probabilità di mutazione deve essere compresa tra 0.001 e 0.5";
+"Validation.EliteSize" = "La dimensione elite deve essere compresa tra 1 e 50";

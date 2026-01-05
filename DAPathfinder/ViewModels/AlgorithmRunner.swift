@@ -11,9 +11,11 @@ import SwiftUI
 
 @MainActor
 class AlgorithmRunner: ObservableObject {
-    @Published var currentRoute: Route?
+    @Published var top5Routes: [Route] = []
+    @Published var allTimeBestRoute: Route?
     @Published var generation: Int = 0
     @Published var isRunning: Bool = false
+    @Published var bestDistance: CGFloat = 0
 
     private var algorithm: GeneticAlgorithm?
 
@@ -23,7 +25,7 @@ class AlgorithmRunner: ObservableObject {
 
         // Reset state
         generation = 0
-        currentRoute = nil
+        top5Routes = []
         isRunning = true
 
         // Create algorithm with settings
@@ -35,10 +37,19 @@ class AlgorithmRunner: ObservableObject {
         )
 
         // Set callback to update UI
-        algorithm?.onNewGeneration = { [weak self] route, gen in
+        algorithm?.onNewGeneration = { [weak self] top5, allTimeBest, gen in
             Task { @MainActor in
-                self?.currentRoute = route
+                self?.top5Routes = top5
+                self?.allTimeBestRoute = allTimeBest
                 self?.generation = gen
+                self?.bestDistance = allTimeBest?.distance ?? top5.first?.distance ?? 0
+            }
+        }
+
+        // Set callback for when evolution stops
+        algorithm?.onEvolutionStopped = { [weak self] in
+            Task { @MainActor in
+                self?.isRunning = false
             }
         }
 
@@ -48,13 +59,15 @@ class AlgorithmRunner: ObservableObject {
 
     func stop() {
         algorithm?.stopEvolution()
-        algorithm = nil
-        isRunning = false
+        // Don't set isRunning = false here; wait for onEvolutionStopped callback
+        // This prevents race condition
     }
 
     func reset() {
         stop()
         generation = 0
-        currentRoute = nil
+        top5Routes = []
+        allTimeBestRoute = nil
+        bestDistance = 0
     }
 }

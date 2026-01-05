@@ -6,37 +6,31 @@
 //  Copyright © 2018 Dejan. All rights reserved.
 //
 
-import UIKit
+import CoreGraphics
 
-class Route
+struct Route
 {
     let cities: [City]
-    
-    private var _distance: CGFloat?
-    var distance: CGFloat {
-        if _distance == nil {
-            _distance = calculateDistance()
-        }
-        return _distance ?? 0.0
-    }
-    
+    let distance: CGFloat
+
     init(cities: [City]) {
         self.cities = cities
+        self.distance = Self.calculateDistance(for: cities)
     }
-    
-    private func calculateDistance() -> CGFloat {
+
+    private static func calculateDistance(for cities: [City]) -> CGFloat {
         var result: CGFloat = 0.0
         var previousCity: City?
-        
+
         cities.forEach { (city) in
             if let previous = previousCity {
                 result += previous.distance(to: city)
             }
             previousCity = city
         }
-        
+
         guard let first = cities.first, let last = cities.last else { return result }
-        
+
         return result + first.distance(to: last)
     }
 

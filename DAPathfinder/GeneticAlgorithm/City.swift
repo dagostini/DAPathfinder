@@ -6,7 +6,7 @@
 //  Copyright © 2018 Dejan. All rights reserved.
 //
 
-import UIKit
+import CoreGraphics
 
 struct City: Equatable
 {

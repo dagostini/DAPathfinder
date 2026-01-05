@@ -15,12 +15,12 @@ struct ContentView: View {
         TabView {
             PathfinderView()
                 .tabItem {
-                    Label("Pathfinder", systemImage: "map")
+                    Label(NSLocalizedString("Tab.Pathfinder", comment: ""), systemImage: "map")
                 }
 
             SettingsView()
                 .tabItem {
-                    Label("Settings", systemImage: "gear")
+                    Label(NSLocalizedString("Tab.Settings", comment: ""), systemImage: "gear")
                 }
         }
     }

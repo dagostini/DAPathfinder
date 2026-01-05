@@ -15,6 +15,9 @@
 		77C242C52019563500B6FD9E /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C242C42019563500B6FD9E /* City.swift */; };
 		77C242C72019565E00B6FD9E /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C242C62019565E00B6FD9E /* Route.swift */; };
 		77C242C92019568500B6FD9E /* GeneticAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C242C82019568500B6FD9E /* GeneticAlgorithm.swift */; };
+		77C242CA2026010100B6FD9E /* GeneticAlgorithmSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C242CB2026010100B6FD9E /* GeneticAlgorithmSettings.swift */; };
+		77C242CC2026010200B6FD9E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C242CD2026010200B6FD9E /* SettingsViewController.swift */; };
+		77C242CE2026010300B6FD9E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C242CF2026010300B6FD9E /* SceneDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +31,9 @@
 		77C242C42019563500B6FD9E /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		77C242C62019565E00B6FD9E /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		77C242C82019568500B6FD9E /* GeneticAlgorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneticAlgorithm.swift; sourceTree = "<group>"; };
+		77C242CB2026010100B6FD9E /* GeneticAlgorithmSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneticAlgorithmSettings.swift; sourceTree = "<group>"; };
+		77C242CD2026010200B6FD9E /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		77C242CF2026010300B6FD9E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,7 +68,10 @@
 			children = (
 				77C242C32019560D00B6FD9E /* GeneticAlgorithm */,
 				77C242B1201955E700B6FD9E /* AppDelegate.swift */,
+				77C242CF2026010300B6FD9E /* SceneDelegate.swift */,
 				77C242B3201955E700B6FD9E /* ViewController.swift */,
+				77C242CB2026010100B6FD9E /* GeneticAlgorithmSettings.swift */,
+				77C242CD2026010200B6FD9E /* SettingsViewController.swift */,
 				77C242B5201955E700B6FD9E /* Main.storyboard */,
 				77C242B8201955E700B6FD9E /* Assets.xcassets */,
 				77C242BA201955E700B6FD9E /* LaunchScreen.storyboard */,
@@ -158,6 +167,9 @@
 				77C242C72019565E00B6FD9E /* Route.swift in Sources */,
 				77C242B2201955E700B6FD9E /* AppDelegate.swift in Sources */,
 				77C242C52019563500B6FD9E /* City.swift in Sources */,
+				77C242CA2026010100B6FD9E /* GeneticAlgorithmSettings.swift in Sources */,
+				77C242CC2026010200B6FD9E /* SettingsViewController.swift in Sources */,
+				77C242CE2026010300B6FD9E /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,7 +307,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = V7FR7N29C2;
+				DEVELOPMENT_TEAM = C3EKZ6XDU9;
 				INFOPLIST_FILE = DAPathfinder/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = agostini.tech.DAPathfinder;
@@ -310,7 +322,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = V7FR7N29C2;
+				DEVELOPMENT_TEAM = C3EKZ6XDU9;
 				INFOPLIST_FILE = DAPathfinder/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = agostini.tech.DAPathfinder;

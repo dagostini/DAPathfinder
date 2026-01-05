@@ -16,7 +16,46 @@ class ViewController: UIViewController {
     var locations: [CGPoint] = []
     
     var geneticAlgorithm: GeneticAlgorithm?
-    
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        // Observe settings changes
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(settingsDidUpdate),
+            name: GeneticAlgorithmSettings.didUpdateSettingsNotification,
+            object: nil
+        )
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+
+    @objc private func settingsDidUpdate() {
+        // Reset algorithm state when settings change, but preserve cities
+        resetAlgorithmState(preserveCities: true)
+    }
+
+    private func resetAlgorithmState(preserveCities: Bool) {
+        // Stop any running algorithm
+        geneticAlgorithm?.stopEvolution()
+        geneticAlgorithm = nil
+
+        // Reset generation counter
+        generationLabel.text = "Generation: 0"
+
+        if preserveCities {
+            // Clear routes but keep cities
+            drawCities()
+        } else {
+            // Clear everything
+            locations.removeAll()
+            citiesView.layer.sublayers?.removeAll()
+        }
+    }
+
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let touch = touches.first else { return }
         
@@ -53,27 +92,37 @@ class ViewController: UIViewController {
         
         DispatchQueue.main.async {
             let path = UIBezierPath()
-            UIColor.black.setStroke()
-            path.lineWidth = 1
-            
+
             path.move(to: firstCity.location)
             otherCities.forEach { (city) in
                 path.addLine(to: city.location)
             }
             path.addLine(to: firstCity.location)
-            
-            path.stroke()
-            
+
             let pathLayer = CAShapeLayer()
             pathLayer.path = path.cgPath
             pathLayer.fillColor = UIColor.clear.cgColor
             pathLayer.strokeColor = UIColor.black.cgColor
+            pathLayer.lineWidth = 1
             self.citiesView.layer.addSublayer(pathLayer)
         }
     }
 
     @IBAction func onStart(_ sender: Any) {
-        geneticAlgorithm = GeneticAlgorithm(withCities: locations.map { City(location: $0) })
+        // Stop any existing algorithm first to prevent race condition
+        geneticAlgorithm?.stopEvolution()
+
+        // Get current settings
+        let settings = GeneticAlgorithmSettings.shared
+
+        // Create new algorithm with current settings
+        geneticAlgorithm = GeneticAlgorithm(
+            withCities: locations.map { City(location: $0) },
+            populationSize: settings.populationSize,
+            mutationProbability: settings.mutationProbability,
+            eliteSize: settings.eliteSize
+        )
+
         geneticAlgorithm?.onNewGeneration = {
             (route, generation) in
             DispatchQueue.main.async {
@@ -81,14 +130,12 @@ class ViewController: UIViewController {
                 self.drawRoute(route: route)
             }
         }
-        
+
         geneticAlgorithm?.startEvolution()
     }
     
     @IBAction func onClear(_ sender: Any) {
-        locations.removeAll()
-        citiesView.layer.sublayers?.removeAll()
-        generationLabel.text = "Generation: 0"
+        resetAlgorithmState(preserveCities: false)
     }
     
     @IBAction func onStop(_ sender: Any) {

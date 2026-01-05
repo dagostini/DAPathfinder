@@ -10,16 +10,23 @@ import UIKit
 
 class GeneticAlgorithm
 {
-    var populationSize = 500
-    let mutationProbability = 0.015
-    
+    var populationSize: Int
+    var mutationProbability: Double
+    var eliteSize: Int
+
     let cities: [City]
     var currentShortestPath: CGFloat = .infinity
     var onNewGeneration: ((Route, Int) -> ())?
     
     private var population: [Route] = []
 
-    init(withCities: [City]) {
+    init(withCities: [City],
+         populationSize: Int = 500,
+         mutationProbability: Double = 0.015,
+         eliteSize: Int = 10) {
+        self.populationSize = populationSize
+        self.mutationProbability = mutationProbability
+        self.eliteSize = eliteSize
         self.cities = withCities
         self.population = self.randomPopulation(fromCities: self.cities)
     }
@@ -55,7 +62,7 @@ class GeneticAlgorithm
                 let currentGeneration = self.population.sorted(by: sortByFitnessDESC)
                 
                 // Preserve the elite individuals directly.
-                var nextGeneration = Array(currentGeneration.prefix(10))
+                var nextGeneration = Array(currentGeneration.prefix(self.eliteSize))
                 
                 // Fill the rest of the population using roulette wheel selection, crossover, and mutation.
                 while nextGeneration.count < self.population.count {

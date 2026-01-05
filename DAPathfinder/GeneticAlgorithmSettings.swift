@@ -7,12 +7,10 @@
 //
 
 import Foundation
+import Combine
 
-class GeneticAlgorithmSettings {
+class GeneticAlgorithmSettings: ObservableObject {
     static let shared = GeneticAlgorithmSettings()
-
-    // Notification name for settings changes
-    static let didUpdateSettingsNotification = Notification.Name("GeneticAlgorithmSettingsDidUpdate")
 
     // UserDefaults keys
     private enum Keys {
@@ -31,42 +29,35 @@ class GeneticAlgorithmSettings {
     private let mutationProbabilityRange = 0.001...0.5
     private let eliteSizeRange = 1...50
 
-    // Properties with UserDefaults persistence
-    var populationSize: Int {
-        get {
-            let value = UserDefaults.standard.integer(forKey: Keys.populationSize)
-            return value > 0 ? value : defaultPopulationSize
-        }
-        set {
-            UserDefaults.standard.set(newValue, forKey: Keys.populationSize)
+    // Published properties with UserDefaults persistence
+    @Published var populationSize: Int {
+        didSet {
+            UserDefaults.standard.set(populationSize, forKey: Keys.populationSize)
         }
     }
 
-    var mutationProbability: Double {
-        get {
-            let value = UserDefaults.standard.double(forKey: Keys.mutationProbability)
-            return value > 0 ? value : defaultMutationProbability
-        }
-        set {
-            UserDefaults.standard.set(newValue, forKey: Keys.mutationProbability)
+    @Published var mutationProbability: Double {
+        didSet {
+            UserDefaults.standard.set(mutationProbability, forKey: Keys.mutationProbability)
         }
     }
 
-    var eliteSize: Int {
-        get {
-            let value = UserDefaults.standard.integer(forKey: Keys.eliteSize)
-            return value > 0 ? value : defaultEliteSize
-        }
-        set {
-            UserDefaults.standard.set(newValue, forKey: Keys.eliteSize)
+    @Published var eliteSize: Int {
+        didSet {
+            UserDefaults.standard.set(eliteSize, forKey: Keys.eliteSize)
         }
     }
 
     private init() {
-        // Initialize with defaults if not set
-        if UserDefaults.standard.object(forKey: Keys.populationSize) == nil {
-            resetToDefaults()
-        }
+        // Load from UserDefaults or use defaults
+        let savedPopSize = UserDefaults.standard.integer(forKey: Keys.populationSize)
+        self.populationSize = savedPopSize > 0 ? savedPopSize : defaultPopulationSize
+
+        let savedMutProb = UserDefaults.standard.double(forKey: Keys.mutationProbability)
+        self.mutationProbability = savedMutProb > 0 ? savedMutProb : defaultMutationProbability
+
+        let savedEliteSize = UserDefaults.standard.integer(forKey: Keys.eliteSize)
+        self.eliteSize = savedEliteSize > 0 ? savedEliteSize : defaultEliteSize
     }
 
     // Validation result
@@ -131,15 +122,13 @@ class GeneticAlgorithmSettings {
         }
     }
 
-    // Update all settings at once and post notification
+    // Update all settings at once (automatically publishes changes)
     func updateSettings(populationSize: Int, mutationProbability: Double, eliteSize: Int) throws {
         try validate(populationSize: populationSize, mutationProbability: mutationProbability, eliteSize: eliteSize)
 
         self.populationSize = populationSize
         self.mutationProbability = mutationProbability
         self.eliteSize = eliteSize
-
-        NotificationCenter.default.post(name: GeneticAlgorithmSettings.didUpdateSettingsNotification, object: nil)
     }
 
     // Reset to default values

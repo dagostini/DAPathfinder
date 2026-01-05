@@ -3,37 +3,35 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 48;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		77C242B2201955E700B6FD9E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C242B1201955E700B6FD9E /* AppDelegate.swift */; };
-		77C242B4201955E700B6FD9E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C242B3201955E700B6FD9E /* ViewController.swift */; };
-		77C242B7201955E700B6FD9E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77C242B5201955E700B6FD9E /* Main.storyboard */; };
 		77C242B9201955E700B6FD9E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 77C242B8201955E700B6FD9E /* Assets.xcassets */; };
-		77C242BC201955E700B6FD9E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 77C242BA201955E700B6FD9E /* LaunchScreen.storyboard */; };
 		77C242C52019563500B6FD9E /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C242C42019563500B6FD9E /* City.swift */; };
 		77C242C72019565E00B6FD9E /* Route.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C242C62019565E00B6FD9E /* Route.swift */; };
 		77C242C92019568500B6FD9E /* GeneticAlgorithm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C242C82019568500B6FD9E /* GeneticAlgorithm.swift */; };
 		77C242CA2026010100B6FD9E /* GeneticAlgorithmSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C242CB2026010100B6FD9E /* GeneticAlgorithmSettings.swift */; };
-		77C242CC2026010200B6FD9E /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C242CD2026010200B6FD9E /* SettingsViewController.swift */; };
-		77C242CE2026010300B6FD9E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C242CF2026010300B6FD9E /* SceneDelegate.swift */; };
+		77C242D0202601AA00B6FD9E /* DAPathfinderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C242D1202601AA00B6FD9E /* DAPathfinderApp.swift */; };
+		77C242D2202601BB00B6FD9E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C242D3202601BB00B6FD9E /* ContentView.swift */; };
+		77C242D4202601CC00B6FD9E /* PathfinderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C242D5202601CC00B6FD9E /* PathfinderView.swift */; };
+		77C242D6202601DD00B6FD9E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C242D7202601DD00B6FD9E /* SettingsView.swift */; };
+		77C242D8202601EE00B6FD9E /* AlgorithmRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77C242D9202601EE00B6FD9E /* AlgorithmRunner.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		77C242AE201955E700B6FD9E /* DAPathfinder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DAPathfinder.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		77C242B1201955E700B6FD9E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		77C242B3201955E700B6FD9E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		77C242B6201955E700B6FD9E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		77C242B8201955E700B6FD9E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		77C242BB201955E700B6FD9E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		77C242BD201955E700B6FD9E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		77C242C42019563500B6FD9E /* City.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		77C242C62019565E00B6FD9E /* Route.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Route.swift; sourceTree = "<group>"; };
 		77C242C82019568500B6FD9E /* GeneticAlgorithm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneticAlgorithm.swift; sourceTree = "<group>"; };
 		77C242CB2026010100B6FD9E /* GeneticAlgorithmSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneticAlgorithmSettings.swift; sourceTree = "<group>"; };
-		77C242CD2026010200B6FD9E /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		77C242CF2026010300B6FD9E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		77C242D1202601AA00B6FD9E /* DAPathfinderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DAPathfinderApp.swift; sourceTree = "<group>"; };
+		77C242D3202601BB00B6FD9E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		77C242D5202601CC00B6FD9E /* PathfinderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PathfinderView.swift; sourceTree = "<group>"; };
+		77C242D7202601DD00B6FD9E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		77C242D9202601EE00B6FD9E /* AlgorithmRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlgorithmRunner.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,15 +64,12 @@
 		77C242B0201955E700B6FD9E /* DAPathfinder */ = {
 			isa = PBXGroup;
 			children = (
+				77C242D1202601AA00B6FD9E /* DAPathfinderApp.swift */,
+				77C242DA202601FF00B6FD9E /* Views */,
+				77C242DB2026020000B6FD9E /* ViewModels */,
 				77C242C32019560D00B6FD9E /* GeneticAlgorithm */,
-				77C242B1201955E700B6FD9E /* AppDelegate.swift */,
-				77C242CF2026010300B6FD9E /* SceneDelegate.swift */,
-				77C242B3201955E700B6FD9E /* ViewController.swift */,
 				77C242CB2026010100B6FD9E /* GeneticAlgorithmSettings.swift */,
-				77C242CD2026010200B6FD9E /* SettingsViewController.swift */,
-				77C242B5201955E700B6FD9E /* Main.storyboard */,
 				77C242B8201955E700B6FD9E /* Assets.xcassets */,
-				77C242BA201955E700B6FD9E /* LaunchScreen.storyboard */,
 				77C242BD201955E700B6FD9E /* Info.plist */,
 			);
 			path = DAPathfinder;
@@ -88,6 +83,24 @@
 				77C242C82019568500B6FD9E /* GeneticAlgorithm.swift */,
 			);
 			path = GeneticAlgorithm;
+			sourceTree = "<group>";
+		};
+		77C242DA202601FF00B6FD9E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				77C242D3202601BB00B6FD9E /* ContentView.swift */,
+				77C242D5202601CC00B6FD9E /* PathfinderView.swift */,
+				77C242D7202601DD00B6FD9E /* SettingsView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		77C242DB2026020000B6FD9E /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				77C242D9202601EE00B6FD9E /* AlgorithmRunner.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -116,8 +129,9 @@
 		77C242A6201955E600B6FD9E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 2620;
 				ORGANIZATIONNAME = Dejan;
 				TargetAttributes = {
 					77C242AD201955E600B6FD9E = {
@@ -149,9 +163,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				77C242BC201955E700B6FD9E /* LaunchScreen.storyboard in Resources */,
 				77C242B9201955E700B6FD9E /* Assets.xcassets in Resources */,
-				77C242B7201955E700B6FD9E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -163,36 +175,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				77C242C92019568500B6FD9E /* GeneticAlgorithm.swift in Sources */,
-				77C242B4201955E700B6FD9E /* ViewController.swift in Sources */,
 				77C242C72019565E00B6FD9E /* Route.swift in Sources */,
-				77C242B2201955E700B6FD9E /* AppDelegate.swift in Sources */,
 				77C242C52019563500B6FD9E /* City.swift in Sources */,
 				77C242CA2026010100B6FD9E /* GeneticAlgorithmSettings.swift in Sources */,
-				77C242CC2026010200B6FD9E /* SettingsViewController.swift in Sources */,
-				77C242CE2026010300B6FD9E /* SceneDelegate.swift in Sources */,
+				77C242D0202601AA00B6FD9E /* DAPathfinderApp.swift in Sources */,
+				77C242D2202601BB00B6FD9E /* ContentView.swift in Sources */,
+				77C242D4202601CC00B6FD9E /* PathfinderView.swift in Sources */,
+				77C242D6202601DD00B6FD9E /* SettingsView.swift in Sources */,
+				77C242D8202601EE00B6FD9E /* AlgorithmRunner.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		77C242B5201955E700B6FD9E /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				77C242B6201955E700B6FD9E /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		77C242BA201955E700B6FD9E /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				77C242BB201955E700B6FD9E /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		77C242BE201955E700B6FD9E /* Debug */ = {
@@ -209,6 +203,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -216,8 +211,10 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -227,8 +224,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = C3EKZ6XDU9;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -243,10 +242,11 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -266,6 +266,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -273,8 +274,10 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -284,8 +287,10 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = C3EKZ6XDU9;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -294,10 +299,12 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -307,9 +314,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = C3EKZ6XDU9;
 				INFOPLIST_FILE = DAPathfinder/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = agostini.tech.DAPathfinder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -322,9 +332,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = C3EKZ6XDU9;
 				INFOPLIST_FILE = DAPathfinder/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = agostini.tech.DAPathfinder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>status.cities</key>
+  <dict>
+    <key>NSStringLocalizedFormatKey</key>
+    <string>Città: %#@count@</string>
+    <key>count</key>
+    <dict>
+      <key>NSStringFormatSpecTypeKey</key>
+      <string>NSStringPluralRuleType</string>
+      <key>NSStringFormatValueTypeKey</key>
+      <string>d</string>
+      <key>one</key>
+      <string>%d città</string>
+      <key>other</key>
+      <string>%d città</string>
+    </dict>
+  </dict>
+  <key>routes.showTop</key>
+  <dict>
+    <key>NSStringLocalizedFormatKey</key>
+    <string>Mostra i migliori %#@count@ percorsi</string>
+    <key>count</key>
+    <dict>
+      <key>NSStringFormatSpecTypeKey</key>
+      <string>NSStringPluralRuleType</string>
+      <key>NSStringFormatValueTypeKey</key>
+      <string>d</string>
+      <key>one</key>
+      <string>%d percorso</string>
+      <key>other</key>
+      <string>%d percorsi</string>
+    </dict>
+  </dict>
+</dict>
+</plist>

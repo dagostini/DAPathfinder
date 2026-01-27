@@ -6,25 +6,21 @@
 //  Copyright © 2018 Dejan. All rights reserved.
 //
 
-import UIKit
+import CoreGraphics
+import Foundation
 
-class Route
-{
+/// A complete route visiting all cities once, with total distance precomputed.
+struct Route: Sendable {
     let cities: [City]
+    let distance: CGFloat
     
-    private var _distance: CGFloat?
-    var distance: CGFloat {
-        if _distance == nil {
-            _distance = calculateDistance()
-        }
-        return _distance ?? 0.0
-    }
-    
+    /// Creates a route and calculates its total distance.
     init(cities: [City]) {
         self.cities = cities
+        self.distance = Self.calculateDistance(for: cities)
     }
     
-    private func calculateDistance() -> CGFloat {
+    private static func calculateDistance(for cities: [City]) -> CGFloat {
         var result: CGFloat = 0.0
         var previousCity: City?
         
@@ -43,6 +39,7 @@ class Route
     /// Returns a normalized fitness value based on the best and worst distances in the generation.
     /// The best route gets a fitness of 1.0, and the worst gets 0.0.
     /// The `exponent` parameter is used to increase selection pressure.
+    /// Computes a normalized fitness value in the range 0...1.
     func normalizedFitness(bestDistance: CGFloat, worstDistance: CGFloat, exponent: CGFloat = 3.0) -> CGFloat {
         // If all routes are identical, give a neutral fitness.
         if bestDistance == worstDistance {

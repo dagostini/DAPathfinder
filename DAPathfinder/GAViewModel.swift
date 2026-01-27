@@ -135,6 +135,8 @@ final class GAViewModel: ObservableObject {
     private let eliteMin = 0
     private let eliteMax = 200
     private let mutationMax = 0.05
+    private let uiUpdateInterval: CFTimeInterval = 1.0 / 30.0
+    private var lastUIUpdate: CFTimeInterval = 0
 
     init() {
         loadSettings()
@@ -165,12 +167,20 @@ final class GAViewModel: ObservableObject {
         shortestDistance = nil
         generation = 0
         isEvolving = true
+        lastUIUpdate = 0
         Task {
             await algorithm.setOnNewGeneration { [weak self] route, nextBestRoutes, shortestDistance, generation in
-                self?.bestRoute = route
-                self?.nextBestRoutes = nextBestRoutes
-                self?.shortestDistance = shortestDistance
-                self?.generation = generation
+                guard let self else { return }
+                let now = CFAbsoluteTimeGetCurrent()
+                let previousShortest = self.shortestDistance ?? .infinity
+                let improved = shortestDistance < previousShortest
+                let shouldUpdate = generation == 1 || improved || (now - lastUIUpdate) >= uiUpdateInterval
+                guard shouldUpdate else { return }
+                lastUIUpdate = now
+                self.bestRoute = route
+                self.nextBestRoutes = self.showTopRoutes ? nextBestRoutes : []
+                self.shortestDistance = shortestDistance
+                self.generation = generation
             }
             await algorithm.startEvolution()
         }
@@ -188,6 +198,7 @@ final class GAViewModel: ObservableObject {
         }
         geneticAlgorithm = nil
         isEvolving = false
+        lastUIUpdate = 0
     }
 
     /// Clears all locations and resets computed state.

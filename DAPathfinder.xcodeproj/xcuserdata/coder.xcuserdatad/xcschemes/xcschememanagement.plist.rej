@@ -1,0 +1,30 @@
+--- Users/coder/vm-work/DAPathfinder/DAPathfinder.xcodeproj/xcuserdata/coder.xcuserdatad/xcschemes/xcschememanagement.plist	2026-01-27 15:51:30
++++ DAPathfinder.xcodeproj/xcuserdata/coder.xcuserdatad/xcschemes/xcschememanagement.plist	1970-01-01 01:00:00
+@@ -1,27 +0,0 @@
+-<?xml version="1.0" encoding="UTF-8"?>
+-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+-<plist version="1.0">
+-<dict>
+-	<key>SchemeUserState</key>
+-	<dict>
+-		<key>DAPathfinder.xcscheme_^#shared#^_</key>
+-		<dict>
+-			<key>orderHint</key>
+-			<integer>0</integer>
+-		</dict>
+-	</dict>
+-	<key>SuppressBuildableAutocreation</key>
+-	<dict>
+-		<key>1A2B3C4D5E6F001122334458</key>
+-		<dict>
+-			<key>primary</key>
+-			<true/>
+-		</dict>
+-		<key>1A2B3C4D5E6F0011223344A7</key>
+-		<dict>
+-			<key>primary</key>
+-			<true/>
+-		</dict>
+-	</dict>
+-</dict>
+-</plist>
